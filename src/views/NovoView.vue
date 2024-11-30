@@ -2,12 +2,39 @@
   <div class="novoview">
     <form @submit.prevent="createUser">
       <h1 class="green">Criar Novo Usuário</h1>
-      <div>
-        <label for="username">Nome do Usuário:</label>
-        <input type="text" v-model="newUser.username" required />
 
-        <label for="password">Senha:</label>
-        <input type="password" v-model="newUser.password" required />
+        <div class="wave-group">
+        <input type="text" class="input" v-model="newUser.username" required />
+        <span class="bar"></span>
+        <label class="label">
+          <span class="label-char" style="--index: 0">N</span>
+          <span class="label-char" style="--index: 1">o</span>
+          <span class="label-char" style="--index: 2">m</span>
+          <span class="label-char" style="--index: 3">e</span>
+          <span class="label-char" style="--index: 4"> </span>
+          <span class="label-char spacewave" style="--index: 5">d</span>
+          <span class="label-char" style="--index: 6">o</span>
+          <span class="label-char spacewave" style="--index: 7"> </span>
+          <span class="label-char" style="--index: 8">u</span>
+          <span class="label-char" style="--index: 9">s</span>
+          <span class="label-char" style="--index: 10">u</span>
+          <span class="label-char" style="--index: 11">á</span>
+          <span class="label-char" style="--index: 12">r</span>
+          <span class="label-char" style="--index: 13">i</span>
+          <span class="label-char" style="--index: 14">o</span>
+        </label>
+      </div>
+
+      <div class="wave-group">
+        <input type="password" class="input" v-model="newUser.password" required />
+        <span class="bar"></span>
+        <label class="label" for="password">
+          <span class="label-char" style="--index: 0">S</span>
+          <span class="label-char" style="--index: 1">e</span>
+          <span class="label-char" style="--index: 2">n</span>
+          <span class="label-char" style="--index: 3">h</span>
+          <span class="label-char" style="--index: 4">a</span>
+        </label>
       </div>
 
       <div>
@@ -62,16 +89,6 @@ const createUser = async () => {
   font-size: 20px !important;
 }
 
-label {
-  margin-top: 15px;
-}
-
-input {
-  width: 100%;
-  padding: 5px;
-  border-radius: 5px;
-}
-
 button {
   display: flex;
   width: 150px;
@@ -108,5 +125,9 @@ button:hover {
   letter-spacing: 3px;
   margin-top: 10px;
   /* Adiciona um espaço acima da mensagem */
+}
+
+.spacewave {
+  padding-left: 5px;
 }
 </style>

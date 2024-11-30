@@ -1,8 +1,24 @@
 <template>
   <div class="agendadoview">
-    <div>
+    <div class="agendadoview_header">
       <h1 class="green">Clientes Agendados</h1>
-      <input type="text" v-model="search" placeholder="Buscar por nome ou telefone" />
+
+      <div class="wave-group">
+
+        <input type="text" class="input search" v-model="search" required />
+        <span class="bar"></span>
+        <label class="label">
+          <span class="label-char" style="--index: 0">B</span>
+          <span class="label-char" style="--index: 1">u</span>
+          <span class="label-char" style="--index: 2">s</span>
+          <span class="label-char" style="--index: 3">c</span>
+          <span class="label-char" style="--index: 4">a</span>
+          <span class="label-char" style="--index: 5">r</span>
+        </label>
+      </div>
+
+
+
 
       <transition name="fade-slide" class="msgAlert">
         <div v-if="successMessage" class="alert alert-success" role="alert">
@@ -15,31 +31,33 @@
         </div>
       </transition>
 
-      <table class="table table-dark table-hover table-bordered">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Horário</th>
-            <th>Serviço</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="appointment in filteredAppointments" :key="appointment.id">
-            <td>{{ appointment.name }}</td>
-            <td>{{ appointment.phone }}</td>
-            <td>{{ formatDateTime(appointment.time) }}</td>
-            <td>{{ appointment.service }}</td>
-            <td>
-              <div class="icones">
-                <i class="bi bi-pencil-square" @click="openEditModal(appointment)"></i>
-                <i class="bi bi-trash3" @click="deleteAppointment(appointment.id)"></i>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table class="table table-dark table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Horário</th>
+              <th>Serviço</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="appointment in filteredAppointments" :key="appointment.id">
+              <td>{{ appointment.name }}</td>
+              <td>{{ appointment.phone }}</td>
+              <td>{{ appointment.time }}</td>
+              <td>{{ appointment.service }}</td>
+              <td>
+                <div class="icones">
+                  <i class="bi bi-pencil-square" @click="openEditModal(appointment)"></i>
+                  <i class="bi bi-trash3" @click="deleteAppointment(appointment.id)"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- Modal de Edição -->
       <div v-if="isEditModalOpen" class="modal">
@@ -47,16 +65,66 @@
           <span class="close" @click="closeEditModal">&times;</span>
           <h2>Editar Agendamento</h2>
           <form @submit.prevent="updateAppointment">
-            <label for="name">Nome:</label>
-            <input type="text" v-model="currentAppointment.name" required />
-            <label for="phone">Telefone:</label>
-            <input type="text" v-model="currentAppointment.phone" required />
-            <label for="time">Horário:</label>
-            <input type="datetime-local" v-model="currentAppointment.time" required />
-            <label for="service">Serviço:</label>
-            <select v-model="currentAppointment.service" required>
-              <option v-for="service in services" :key="service" :value="service">{{ service }}</option>
-            </select>
+            <div class="wave-group">
+        <input type="text" class="input" v-model="currentAppointment.name" required />
+        <span class="bar"></span>
+        <label class="label">
+          <span class="label-char" style="--index: 0">N</span>
+          <span class="label-char" style="--index: 1">o</span>
+          <span class="label-char" style="--index: 2">m</span>
+          <span class="label-char" style="--index: 3">e</span>
+        </label>
+      </div>
+
+      <div class="wave-group">
+        <input name="phone" id="phone" type="text" class="input" v-model="currentAppointment.phone" @input="formatPhone"
+          @keypress="limitPhoneInput" required />
+        <span class="bar"></span>
+        <label class="label">
+          <span class="label-char" style="--index: 0">T</span>
+          <span class="label-char" style="--index: 1">e</span>
+          <span class="label-char" style="--index: 2">l</span>
+          <span class="label-char" style="--index: 3">e</span>
+          <span class="label-char" style="--index: 4">f</span>
+          <span class="label-char" style="--index: 5">o</span>
+          <span class="label-char" style="--index: 6">n</span>
+          <span class="label-char" style="--index: 7">e</span>
+        </label>
+      </div>
+
+      <div class="wave-group">
+        <input name="time" id="time" type="text" class="input" v-model="currentAppointment.time"
+          @input="formattime" required />
+        <span class="bar"></span>
+        <label for="time" class="label">
+          <span class="label-char" style="--index: 0">H</span>
+          <span class="label-char" style="--index: 1">o</span>
+          <span class="label-char" style="--index: 2">r</span>
+          <span class="label-char" style="--index: 3">á</span>
+          <span class="label-char" style="--index: 4">r</span>
+          <span class="label-char" style="--index: 5">i</span>
+          <span class="label-char" style="--index: 6">o</span>
+        </label>
+      </div>
+
+      <div class="wave-group">
+        <select class="input" v-model="currentAppointment.service" required>
+          <option v-for="service in services" :key="service" :value="service">{{ service }}</option>
+        </select>
+        <span class="bar"></span>
+        <label for="time" class="label">
+          <span class="label-char" style="--index: 0">S</span>
+          <span class="label-char" style="--index: 1">e</span>
+          <span class="label-char" style="--index: 2">r</span>
+          <span class="label-char" style="--index: 3">v</span>
+          <span class="label-char" style="--index: 4">i</span>
+          <span class="label-char" style="--index: 5">ç</span>
+          <span class="label-char" style="--index: 6">o</span>
+          <span class="label-char" style="--index: 7">s</span>
+        </label>
+
+      </div>
+            
             <button class="btn-11" type="submit">Salvar</button>
           </form>
         </div>
@@ -151,18 +219,6 @@ const deleteAppointment = async (id) => {
     }, 3000);
   }
 };
-
-// Função para formatar a data/hora
-const formatDateTime = (datetime) => {
-  const date = new Date(datetime);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-
-  return `${day}/${month}/${year} - ${hours}:${minutes}`;
-};
 </script>
 
 <style>
@@ -175,21 +231,36 @@ const formatDateTime = (datetime) => {
   font-size: 15px !important;
 }
 
-.table {
-  margin-top: 20px;
+.agendadoview_header {
+  display: block;
+  margin: auto;
+  margin-top: 200px;
+  margin-left: 10px;
+}
+
+.table-container {
+  display: flex;
   position: absolute;
-  max-width: 700px;
-  border-collapse: separate;
-  border-spacing: 0;
+  width: auto;
+  height: 800px;
+  max-height: 450px; /* Altura máxima para a tabela */
+  overflow: auto;  /* Adiciona barra de rolagem vertical quando necessário */
   border: 3px solid var(--vt-c-indigo);
   border-radius: 5px;
-  overflow: hidden;
+}
+
+.table {
+  width: 700px; /* Para garantir que a tabela ocupe toda a largura do contêiner */
+  
 }
 
 .table thead th {
+  position: sticky; /* Fixa o cabeçalho */
+  top: -1px; /* Fixa no topo do contêiner */
+  background-color: #000000; /* Cor de fundo para o cabeçalho */
+  color: white; /* Cor do texto do cabeçalho */
+  z-index: 1; /* Garante que o cabeçalho fique acima do conteúdo */
   text-align: center;
-  background-color: transparent;
-  color: hsla(160, 100%, 37%, 1);
   font-weight: bold;
 }
 
@@ -228,20 +299,6 @@ const formatDateTime = (datetime) => {
   align-items: center;
 }
 
-label {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-input {
-  display: flex;
-  border-radius: 5px;
-  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.5);
-  width: 350px !important;
-  padding-left: 20px !important;
-  color: black;
-}
-
 .btn-11 {
   border: none;
   background: hsla(160, 100%, 37%, 1);
@@ -257,9 +314,9 @@ input {
 
 .btn-11:active {
   box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
-              -4px -4px 6px 0 rgba(116, 125, 136, .2),
-              inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-              inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
 .close {
@@ -274,19 +331,25 @@ input {
   cursor: pointer;
 }
 
-.msgAlert{
+.msgAlert {
   position: absolute;
   bottom: 0;
   right: 0;
 }
 
 /* Estilos de Transição */
-.fade-slide-enter-active, .fade-slide-leave-active {
+.fade-slide-enter-active,
+.fade-slide-leave-active {
   transition: all 0.5s ease;
 }
 
-.fade-slide-enter, .fade-slide-leave-to {
+.fade-slide-enter,
+.fade-slide-leave-to {
   opacity: 0;
   transform: translateY(20px);
+}
+
+.search {
+  margin-bottom: 20px;
 }
 </style>

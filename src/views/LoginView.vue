@@ -1,13 +1,32 @@
 <template>
-  <div class="loginview">
+  <div class="loginview ">
     <form @submit.prevent="loginUser">
       <h1 class="green">Login</h1>
-      <div>
-        <label for="username">Usuário:</label>
-        <input type="text" v-model="loginData.username" required />
+      <div class="wave-group">
 
-        <label for="password">Senha:</label>
-        <input type="password" v-model="loginData.password" required />
+        <input type="text" class="input" v-model="loginData.username" required />
+        <span class="bar"></span>
+        <label class="label">
+          <span class="label-char" style="--index: 0">U</span>
+          <span class="label-char" style="--index: 1">s</span>
+          <span class="label-char" style="--index: 2">u</span>
+          <span class="label-char" style="--index: 3">á</span>
+          <span class="label-char" style="--index: 4">r</span>
+          <span class="label-char" style="--index: 5">i</span>
+          <span class="label-char" style="--index: 6">o</span>
+        </label>
+      </div>
+
+      <div class="wave-group">
+        <input type="password" class="input" v-model="loginData.password" required />
+        <span class="bar"></span>
+        <label class="label">
+          <span class="label-char" style="--index: 0">S</span>
+          <span class="label-char" style="--index: 1">e</span>
+          <span class="label-char" style="--index: 2">n</span>
+          <span class="label-char" style="--index: 3">h</span>
+          <span class="label-char" style="--index: 4">a</span>
+        </label>
       </div>
 
       <div>
@@ -24,7 +43,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
-const router = useRouter(); 
+const router = useRouter();
 const loginData = ref({
   username: '',
   password: ''
@@ -59,23 +78,14 @@ const loginUser = async () => {
 
 <style>
 .loginview {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 2rem;
-    text-align: left;
-    font-size: 20px !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  text-align: left;
+  font-size: 20px !important;
 }
 
-label {
-  margin-top: 15px;
-}
-
-input {
-  width: 100%;
-  padding: 5px;
-  border-radius: 5px;
-}
 
 button {
   display: flex;
@@ -106,10 +116,12 @@ button:hover {
 }
 
 .msgResult {
-  display: block; /* Use block para ocupar espaço quando visível */
+  display: block;
+  /* Use block para ocupar espaço quando visível */
   color: red;
   font-size: 15px;
   letter-spacing: 3px;
-  margin-top: 10px; /* Adiciona um espaço acima da mensagem */
+  margin-top: 10px;
+  /* Adiciona um espaço acima da mensagem */
 }
 </style>
