@@ -6,7 +6,7 @@
         Sobre
       </h1>
 
-      Fundada em 2002, a Barbearia Fernando começou como um pequeno espaço dedicado à arte da barbearia, com o objetivo
+      Fundada em 2002, a Barbearia Padrinhos começou como um pequeno espaço dedicado à arte da barbearia, com o objetivo
       de oferecer um atendimento acolhedor e de qualidade. Ao longo dos anos, crescemos e expandimos nossos serviços,
       incorporando tratamentos capilares e cuidados especiais, sempre com um olhar atento às tendências de estilo.
       <br>Nossa equipe de barbeiros talentosos se dedica a proporcionar uma experiência personalizada, realçando a beleza e a

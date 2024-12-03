@@ -30,7 +30,7 @@ i {
   place-content: center;
   width: 32px;
   height: 32px;
-
+  box-shadow: black 1px 1px 1px;
   color: var(--color-text);
 }
 
@@ -52,14 +52,13 @@ h3 {
     left: -26px;
     position: absolute;
     border: 1px solid var(--color-border);
-    background: var(--color-background);
     border-radius: 8px;
     width: 50px;
     height: 50px;
   }
 
   .item:before {
-    content: ' ';
+    content: " ";
     border-left: 1px solid var(--color-border);
     position: absolute;
     left: 0;
@@ -68,7 +67,7 @@ h3 {
   }
 
   .item:after {
-    content: ' ';
+    content: " ";
     border-left: 1px solid var(--color-border);
     position: absolute;
     left: 0;
