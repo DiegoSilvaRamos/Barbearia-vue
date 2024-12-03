@@ -1,37 +1,34 @@
-<<<<<<< HEAD
-# Barbearia-vue
-=======
-# barbearia fernando
+# DOCUMENTAÇÃO
+### Barbearia Padrinhos
 
-This template should help get you started developing with Vue 3 in Vite.
+Esse projeto foi desenvolvido para a Barbearia Padrinhos, uma barbearia localizada em Belford Roxo, Rio de Janeiro.
 
-## Recommended IDE Setup
+## Objetivo
+Usado para estudo e TCC, esse projeto é baseado em uma Barbearia real, onde foi encontrado a necessidade de um sistema para agendamento de seus cliente. O projeto foi feito em Vue em seu frontend e Express.js em seu backend.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Dependencias
+> ### Frontend
+> npm create vue@latest
+> npm install bootstrap@5.3.3
+> npm i bootstrap-icons
+>
+> ### Backend
+> npm install express
+> npm install jsonwebtoken
+> npm install bcrypt
+> npm install sqlite3
+> npm install dotenv --save
 
-## Type Support for `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
+## Instalação
 
 ```sh
+git clone <LINK DO REPOSITORIO>
+cd Barbearia-vue
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
+-- Abra um novo terminal no vscode
+cd backend
+npm start
 ```
->>>>>>> main
